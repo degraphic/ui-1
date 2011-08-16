@@ -314,18 +314,14 @@ cspace = cspace || {};
             condition: that.options.showDeleteButton,
             trueTree: {
                 deleteButton: {
-                    decorators: [{
-                        type: "attrs",
-                        attributes: {
-                            value: that.options.strings.deleteButton
-                        }
-                    }, {
+                    messagekey: "record-primary-deleteButton",
+                    decorators: {
                         type: "jQuery",
                         func: "prop",
                         args: {
                             disabled: that.checkDeleteDisabling
                         }
-                    }]
+                    }
                 }
             }
         };
@@ -334,37 +330,23 @@ cspace = cspace || {};
             condition: that.options.showCreateFromExistingButton,
             trueTree: {
                 createFromExistingButton: {
-                    decorators: [{
-                        type: "attrs",
-                        attributes: {
-                            value: that.options.strings.createFromExistingButton
+                    messagekey: "record-primary-createFromExisting",
+                    decorators: {
+                            type: "jQuery",
+                            func: "prop",
+                            args: {
+                                disabled: that.checkCreateFromExistingDisabling
+                            }
                         }
-                    }, {
-                        type: "jQuery",
-                        func: "prop",
-                        args: {
-                            disabled: that.checkCreateFromExistingDisabling
-                        }
-                    }]
                 }
             }
         };
         var tree = fluid.merge(null, {
             save: {
-                decorators: {
-                    type: "attrs",
-                    attributes: {
-                        value: that.options.strings.save
-                    }
-                }
+                messagekey: "record-primary-saveButton"
             },
             cancel: {
-                decorators: {
-                    type: "attrs",
-                    attributes: {
-                        value: that.options.strings.cancel
-                    }
-                }
+                messagekey: "record-primary-cancelButton"
             }
         }, that.options.uispec);
         tree.expander = fluid.makeArray(tree.expander); //make an expander array in case we have expanders in the uispec
@@ -584,10 +566,6 @@ cspace = cspace || {};
             defaultTermIndicator: " (default)",
             noDefaultInvitation: "-- Select an item from the list --",
             missingRequiredFields: "Some required fields are empty",
-            save: "Save",
-            cancel: "Cancel changes",
-            deleteButton: "Delete",
-            createFromExistingButton: "Create new from existing",
             deletePrimaryMessage: "Delete this %record%relations%media?",
             deleteMessageWithRelated: " and its relationships",
             deleteMessageMediaAttached: " and its attached media"
