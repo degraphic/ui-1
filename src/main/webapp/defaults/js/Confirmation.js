@@ -171,7 +171,15 @@ cspace = cspace || {};
     fluid.defaults("cspace.confirmation.deleteDialog", {
         enableButtons: ["act", "cancel"],
         model: {
-            messages: ["primaryMessage"]
+            messages: ["primaryMessage"],
+            strings: {
+                cancelText: "confirmation-default-cancelText",
+                cancelAlt: "confirmation-default-cancelAlt",
+                closeAlt: "confirmation-default-closeAlt",
+                primaryMessage: "Delete this record?",
+                actText: "Delete",
+                actAlt: "delete record"
+            }
         },
         strings: {
             primaryMessage: "Delete this record?",

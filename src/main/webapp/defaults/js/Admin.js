@@ -32,7 +32,7 @@ cspace = cspace || {};
             add: ".csc-admin-add",
             detailsHeader: ".csc-admin-detailsHeader",
             detailsNone: ".csc-admin-detailsNone",
-            detaulsNoneSelected: ".csc-admin-detailsNoneSelected"
+            detailsNoneSelected: ".csc-admin-detailsNoneSelected"
         },
         model: {
             strings: {
@@ -40,7 +40,7 @@ cspace = cspace || {};
                 listHeader: "%recordType-admin-listHeader",
                 detailsHeader: "%recordType-admin-detailsHeader",
                 detailsNone: "%recordType-admin-detailsNone",
-                detaulsNoneSelected: "%recordType-admin-detaulsNoneSelected"
+                detailsNoneSelected: "%recordType-admin-detailsNoneSelected"
             }
         },
         strings: {}
@@ -65,8 +65,8 @@ cspace = cspace || {};
             detailsNone: {
                 messagekey: "${strings.detailsNone}"
             },
-            detaulsNoneSelected: {
-                messagekey: "${strings.detaulsNoneSelected}"
+            detailsNoneSelected: {
+                messagekey: "${strings.detailsNoneSelected}"
             },
             add: {
                 decorators: {

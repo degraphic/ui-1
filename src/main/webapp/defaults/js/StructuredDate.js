@@ -145,54 +145,56 @@ cspace = cspace || {};
         // Also changed in StructuredDateTest.js.
         protoTree: {
             dateDisplayDateLabel: {
-                messagekey: "dateDisplayDateLabel"
+                messagekey: "structuredDate-dateDisplayDateLabel"
             },
             datePeriodLabel: {
-                messagekey: "datePeriodLabel"
+                messagekey: "structuredDate-datePeriodLabel"
             },
             dateAssociationLabel: {
-                messagekey: "dateAssociationLabel"
+                messagekey: "structuredDate-dateAssociationLabel"
             },
             dateNoteLabel: {
-                messagekey: "dateNoteLabel"
+                messagekey: "structuredDate-dateNoteLabel"
             },
             dateHeaderLabel: {
-                messagekey: "dateHeaderLabel"
+                messagekey: "structuredDate-dateHeaderLabel"
             },
             dateYearLabel: {
-                messagekey: "dateYearLabel"
+                messagekey: "structuredDate-dateYearLabel"
             },
             dateMonthLabel: {
-                messagekey: "dateMonthLabel"
+                messagekey: "structuredDate-dateMonthLabel"
             },
             dateDayLabel: {
-                messagekey: "dateDayLabel"
+                messagekey: "structuredDate-dateDayLabel"
             },
             dateEraLabel: {
-                messagekey: "dateEraLabel"
+                messagekey: "structuredDate-dateEraLabel"
             },
             dateCertaintyHeaderLabel: {
-                messagekey: "dateCertaintyHeaderLabel"
+                messagekey: "structuredDate-dateCertaintyHeaderLabel"
             },
             dateCertaintyLabel: {
-                messagekey: "dateCertaintyLabel"
+                messagekey: "structuredDate-dateCertaintyLabel"
             },
             dateQualifierLabel: {
-                messagekey: "dateQualifierLabel"
+                messagekey: "structuredDate-dateQualifierLabel"
             },
             dateQualifierValueLabel: {
-                messagekey: "dateQualifierValueLabel"
+                messagekey: "structuredDate-dateQualifierValueLabel"
             },
             dateQualifierUnitLabel: {
-                messagekey: "dateQualifierUnitLabel"
+                messagekey: "structuredDate-dateQualifierUnitLabel"
             },
             dateEarliestSingleRowLabel: {
-                messagekey: "dateEarliestSingleRowLabel"
+                messagekey: "structuredDate-dateEarliestSingleRowLabel"
             },
             dateLatestRowLabel: {
-                messagekey: "dateLatestRowLabel"
+                messagekey: "structuredDate-dateLatestRowLabel"
             }
         },
+        parentBundle: "{globalBundle}",
+        strings: {},
         selectors: {
             // Also you will need a separate selector for the label "Date Text" as well
             // in order to be able to assign the label value from the message bundle and make
@@ -235,25 +237,6 @@ cspace = cspace || {};
             dateLatestQualifier: ".csc-structuredDate-dateLatestQualifier",
             dateLatestQualifierValue: ".csc-structuredDate-dateLatestQualifierValue",
             dateLatestQualifierUnit: ".csc-structuredDate-dateLatestQualifierUnit"
-        },
-        strings: {
-            close: "Close",
-            dateDisplayDateLabel: "Display Date",
-            datePeriodLabel: "Date Period",
-            dateAssociationLabel: "Association",
-            dateNoteLabel: "Note",
-            dateHeaderLabel: "Date",
-            dateYearLabel: "Year",
-            dateMonthLabel: "Month",
-            dateDayLabel: "Day",
-            dateEraLabel: "Era",
-            dateCertaintyHeaderLabel: "Certainty Term OR Qualifier, Value and Unit",
-            dateCertaintyLabel: "Certainty",
-            dateQualifierLabel: "Qualifier",
-            dateQualifierValueLabel: "Value",
-            dateQualifierUnitLabel: "Unit",
-            dateEarliestSingleRowLabel: "Earliest/Single Date",
-            dateLatestRowLabel: "Latest Date"
         },
         // This is the place to specify the template for the popup
         // (e.g. StructuredDate.html). This template will be fetched
