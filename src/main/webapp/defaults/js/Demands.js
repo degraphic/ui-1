@@ -1053,6 +1053,14 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
             }
         });
         fluid.demands("cspace.recordList", "cspace.sidebar", {
+            options: {
+                strings: {
+                    number: "{globalBundle}.messageBase.sidebar-termsUsed-number",
+                    sourceFieldName: "{globalBundle}.messageBase.sidebar-termsUsed-sourceFieldName",
+                    recordtype: "{globalBundle}.messageBase.sidebar-termsUsed-recordtype",
+                    nothingYet: "{globalBundle}.messageBase.sidebar-termsUsed-nothingYet"
+                }
+            },
             container: "{sidebar}.options.selectors.termsUsed"
         });
         fluid.demands("select", ["cspace.recordList", "cspace.tab"], {
@@ -1392,6 +1400,10 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         fluid.demands("sidebar", "cspace.pageBuilder", {
             container: "{pageBuilder}.options.selectors.sidebar",
             options: {
+                strings: {
+                    mediumImage: "{globalBundle}.messageBase.sidebar-mediumImage",
+                    numOfTerms: "{globalBundle}.messageBase.sidebar-numOfTerms"                                
+                },
                 relationsElPath: "relations",
                 primaryRecordType: "{pageBuilder}.options.pageType",
                 recordApplier: "{pageBuilder}.applier",

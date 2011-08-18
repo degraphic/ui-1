@@ -82,10 +82,10 @@ cspace = cspace || {};
     cspace.sidebar.produceTree = function (that) {
         return {
             mediaHeader: {
-                messagekey: "mediaHeader"
+                messagekey: "sidebar-mediaHeader"
             },
             termsHeader: {
-                messagekey: "termsHeader"
+                messagekey: "sidebar-termsHeader"
             },
             expander: [{
                 repeatID: "categoryContainer",
@@ -156,10 +156,6 @@ cspace = cspace || {};
                     },
                     columns: ["number", "sourceFieldName", "recordtype"],
                     strings: {
-                        number: "Term",
-                        sourceFieldName: "Field",
-                        recordtype: "Vocabulary",
-                        nothingYet: "No Authority terms used yet"
                     },
                     showNumberOfItems: false
                 }
@@ -251,6 +247,7 @@ cspace = cspace || {};
             togglable: ".csc-sidebar-togglable",
             report: ".csc-sidebar-report"
         },
+        parentBundle: "{globalBundle}",
         selectorsToIgnore: ["report", "numOfTerms", "termsUsed", "relatedCataloging", "relatedProcedures", "header", "togglable"],
         resources: {
             template: cspace.resourceSpecExpander({
@@ -262,10 +259,6 @@ cspace = cspace || {};
             })
         },
         strings: {
-            numOfTerms: "(%numOfTerms)",
-            mediaHeader: "Media Snapshot",
-            termsHeader: "Terms Used",
-            mediumImage: "This is medium media image."
         },
         styles: {
             mediumImage: "cs-sidebar-mediumImage",
