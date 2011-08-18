@@ -72,7 +72,7 @@ cspace = cspace || {};
         that.renderer.refreshView();
         fluid.initDependents(that);
         
-        var title = that.messageResolver.resolve("title", {recordType: recordName});        
+        var title = that.messageResolver.resolve("searchToRelate-title", {recordType: recordName});        
         that.container.dialog({
             autoOpen: false,
             modal: true,
@@ -108,22 +108,18 @@ cspace = cspace || {};
                 }
             },
             relationshipType: {
-                messagekey: "relationshipType"
+                messagekey: "searchToRelate-relationshipType"
             },
             expander: {
                 type: "fluid.renderer.condition",
                 condition: that.options.showCreate || false,
                 trueTree: {
                     createNew: {
-                        messagekey: "createNew"
+                        messagekey: "searchToRelate-createNew"
                     },
                     createNewButton: {
+                        messagekey: "searchToRelate-createNewButton",
                         decorators: [{
-                            type: "attrs",
-                            attributes: {
-                                value: that.options.strings.createNewButton
-                            }
-                        }, {
                             type: "addClass",
                             classes: that.options.styles.createNewButton
                         }]
@@ -140,18 +136,13 @@ cspace = cspace || {};
                 }
             },
             addButton: {
-                decorators: {
-                    type: "attrs",
-                    attributes: {
-                        value: that.options.strings.addButton
-                    }
-                }
+                messagekey: "searchToRelate-addButton"
             },
             next: {
-                messagekey: "next"
+                messagekey: "searchToRelate-next"
             },
             previous: {
-                messagekey: "previous"
+                messagekey: "searchToRelate-previous"
             }
         };
     };
@@ -209,17 +200,6 @@ cspace = cspace || {};
             }
         },
         parentBundle: "{globalBundle}",
-        strings: {
-            createNewButton: "Create",
-            procedures: "Procedural",
-            title: "Add Related %recordType Record",
-            closeAlt: "close button",
-            relationshipType: "Select relationship type:",
-            createNew: "Create new record:",
-            addButton: "Add to current record",
-            next: "next >",
-            previous: "< previous"
-        },
         components: {
             search: {
                 type: "cspace.search.searchView",

@@ -233,6 +233,11 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
             container: "{relationManager}.dom.searchDialog",
             options: {
                 showCreate: true,
+                strings: {
+                    "searchToRelate-title": "{globalBundle}.messageBase.searchToRelate-title",
+                    procedures: "{globalBundle}.messageBase.searchToRelate-procedures",
+                    closeAlt: "{globalBundle}.messageBase.searchToRelate-closeAlt" 
+                },
                 listeners: {
                     addRelations: {
                         expander: {
@@ -248,6 +253,11 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         fluid.demands("cspace.searchToRelateDialog", ["cspace.relationManager", "cspace.localData", "cspace.sidebar"], {
             container: "{relationManager}.dom.searchDialog",
             options: {
+                strings: {
+                    "searchToRelate-title": "{globalBundle}.messageBase.searchToRelate-title",
+                    procedures: "{globalBundle}.messageBase.searchToRelate-procedures",
+                    closeAlt: "{globalBundle}.messageBase.searchToRelate-closeAlt" 
+                },
                 listeners: {
                     addRelations: {
                         expander: {
@@ -1245,11 +1255,23 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         // Search To Relate Dialog demands
         fluid.demands("cspace.searchToRelateDialog", "cspace.relationManager", {
             container: "{relationManager}.dom.searchDialog",
-            options: {
+            options: {                
+                strings: {
+                    "searchToRelate-title": "{globalBundle}.messageBase.searchToRelate-title",
+                    procedures: "{globalBundle}.messageBase.searchToRelate-procedures",
+                    closeAlt: "{globalBundle}.messageBase.searchToRelate-closeAlt" 
+                },
                 showCreate: true
             }
         });
-        fluid.demands("cspace.searchToRelateDialog", ["cspace.relationManager", "cspace.sidebar"], {
+        fluid.demands("cspace.searchToRelateDialog", ["cspace.relationManager", "cspace.sidebar"], {            
+            options: {
+                strings: {
+                    "searchToRelate-title": "{globalBundle}.messageBase.searchToRelate-title",
+                    procedures: "{globalBundle}.messageBase.searchToRelate-procedures",
+                    closeAlt: "{globalBundle}.messageBase.searchToRelate-closeAlt" 
+                }
+            },
             container: "{relationManager}.dom.searchDialog"
         });
         
