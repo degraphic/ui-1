@@ -1329,8 +1329,15 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         fluid.demands("fluid.pager", "cspace.search.searchView", ["{searchView}.dom.resultsContainer", fluid.COMPONENT_OPTIONS]);
         fluid.demands("search", "cspace.searchToRelateDialog", {
             container: "{searchToRelateDialog}.container",
-            options: {
+            options: {           
                 components: {
+                    mainSearch: {
+                        options: {
+                            strings: {                                   
+                                recordTypeSelectLabel: "{globalBundle}.messageBase.searchToRelate-recordTypeSelectLabel" 
+                            }
+                        }
+                    },
                     searchResultsResolver: {
                         type: "cspace.search.searchResultsResolver"
                     }
@@ -1393,6 +1400,11 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
             container: "{pageBuilder}.options.selectors.pivotSearch"
         });
         fluid.demands("searchBox", "cspace.header", {
+            options: {
+                strings: {
+                    recordTypeSelectLabel: "{globalBundle}.messageBase.searchBox-recordTypeSelectLabel"
+                }
+            },
             container: "{header}.options.selectors.searchBox"
         });
         

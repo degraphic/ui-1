@@ -49,10 +49,7 @@ cspace = cspace || {};
             searchButton: "cs-searchBox-button",
             advancedSearch: "cs-searchBox-advancedSearch"
         },
-        strings: {                  // List of strings that the component will render (for l10n and i18n).
-            searchButtonText: "Search",
-            recordTypeSelectLabel: "",
-            advancedSearch: "Advanced search"
+        strings: {
         },
         parentBundle: "{globalBundle}",
         globalNavigator: "{globalNavigator}",
@@ -124,7 +121,7 @@ cspace = cspace || {};
     cspace.searchBox.produceTree = function (that) {
         var tree = {
             searchButton: {
-                messagekey: "searchButtonText"
+                messagekey: "searchBox-searchButtonText"
             },
             searchQuery: {},
             recordTypeSelectLabel: {
@@ -143,7 +140,7 @@ cspace = cspace || {};
             decorators: {"addClass": "{styles}.advancedSearch"},
             target: that.options.urls.advancedSearchURL,
             linktext: {
-                messagekey: "advancedSearch"
+                messagekey: "searchBox-advancedSearch"
             }
         };
         return tree;
