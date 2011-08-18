@@ -22,7 +22,7 @@ cspace = cspace || {};
             model: "replace"
         },
         strings: {
-            primary: "Current record"
+
         },
         parentBundle: "{globalBundle}",
         model: {
