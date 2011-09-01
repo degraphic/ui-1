@@ -45,6 +45,7 @@ cspace = cspace || {};
 
     cspace.confirmationDialog = function (container, options) {
         var that = fluid.initRendererComponent("cspace.confirmationDialog", container, options);
+        fluid.initDependents(that);
         that.refreshView();
         bindEventHandlers(that);
         return that;
@@ -67,7 +68,7 @@ cspace = cspace || {};
                 decorators: {
                     type: "attrs",
                     attributes: {
-                        alt: options.strings.closeAlt                        
+                        alt: that.lookupMessage(options.messagekeys.closeAlt)
                     }
                 }
             }
@@ -83,10 +84,22 @@ cspace = cspace || {};
         events: {
             onClose: null
         },
+        invokers: {
+            lookupMessage: {
+                funcName: "cspace.util.lookupMessage",
+                args: ["{confirmationDialog}.options.parentBundle.messageBase", "{arguments}.0"]
+            }
+        },
+        parentBundle: "{globalBundle}",
+        messagekeys: {
+            cancelText: "confirmation-defaults-cancelText",
+            cancelAlt: "confirmation-defaults-cancelAlt",            
+            closeAlt: "confirmation-defaults-closeAlt"
+        },
         strings: {
             cancelText: "Cancel",
             cancelAlt: "cancel",
-            closeAlt: "close dialog"
+            closeAlt: "close dialog 1111"
         },
         selectors: {
             "message:": ".csc-confirmationDialog-text",
@@ -137,8 +150,8 @@ cspace = cspace || {};
 
     cspace.confirmation = function (options) {
         var that = fluid.initLittleComponent("cspace.confirmation", options);
-        setupConfirmation(that);
         fluid.initDependents(that);
+        setupConfirmation(that);
         
         that.open = function (strategy, container, options) {
             if (!strategy) {
@@ -171,15 +184,16 @@ cspace = cspace || {};
     fluid.defaults("cspace.confirmation.deleteDialog", {
         enableButtons: ["act", "cancel"],
         model: {
-            messages: ["primaryMessage"],
-            strings: {
-                cancelText: "confirmation-default-cancelText",
-                cancelAlt: "confirmation-default-cancelAlt",
-                closeAlt: "confirmation-default-closeAlt",
-                primaryMessage: "Delete this record?",
-                actText: "Delete",
-                actAlt: "delete record"
-            }
+            messages: ["confirmation-delete-primaryMessage"]
+        },
+        parentBundle: "{globalBundle}",
+        messagekeys: {
+            cancelText: "confirmation-delete-cancelText",
+            cancelAlt: "confirmation-delete-cancelAlt",
+            closeAlt: "confirmation-delete-closeAlt",
+            primaryMessage: "confirmation-delete-primaryMessage",
+            actText: "confirmation-delete-actText",
+            actAlt: "confirmation-delete-actAlt"                
         },
         strings: {
             primaryMessage: "Delete this record?",
@@ -197,6 +211,14 @@ cspace = cspace || {};
         enableButtons: ["act", "cancel", "proceed"],
         model: {
             messages: ["primaryMessage", "secondaryMessage"]
+        },
+        messagekeys: {
+            primaryMessage: "confirmation-save-primaryMessage",
+            secondaryMessage: "confirmation-save-secondaryMessage",
+            actText: "confirmation-save-actText",
+            actAlt: "confirmation-save-actAlt",
+            proceedText: "confirmation-save-proceedText",
+            proceedAlt: "confirmation-save-proceedAlt"            
         },
         strings: {
             primaryMessage: "You are about to leave this record.",
@@ -217,6 +239,13 @@ cspace = cspace || {};
         enableButtons: ["act"],
         model: {
             messages: ["primaryMessage", "secondaryMessage"]
+        },        
+        messagekeys: {
+            title: "confirmation-alert-title",
+            primaryMessage: "confirmation-alert-primaryMessage",
+            secondaryMessage: "confirmation-alert-secondaryMessage",
+            actText: "confirmation-alert-actText",
+            actAlt: "confirmation-alert-actAlt"
         },
         strings: {
             title: "Alert",
