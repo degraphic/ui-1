@@ -16,15 +16,15 @@ cspace = cspace || {};
 (function ($, fluid) {
     fluid.log("Search.js loaded");
     
-    var displayLookingMessage = function (domBinder, keywords, strings) {
+    var displayLookingMessage = function (domBinder, keywords, that) {
         domBinder.locate("resultsCountContainer").hide();
-        domBinder.locate("lookingString").text(fluid.stringTemplate(strings.looking, {query: keywords || ""}));
+        domBinder.locate("lookingString").text(fluid.stringTemplate(that.lookupMessage("search-looking"), {query: keywords || ""}));
         domBinder.locate("lookingContainer").show();
     };
     
-    var displayResultsCount = function (domBinder, count, keywords, strings) {
+    var displayResultsCount = function (domBinder, count, keywords, that) {
         domBinder.locate("lookingContainer").hide();
-        domBinder.locate("resultsCount").text(fluid.stringTemplate(strings.resultsCount, {count: count, query: keywords || ""}));
+          domBinder.locate("resultsCount").text(fluid.stringTemplate(that.lookupMessage("search-resultsCount"), {count: count, query: keywords || ""}));
         domBinder.locate("resultsCountContainer").show();
     };
 
@@ -103,7 +103,7 @@ cspace = cspace || {};
         
         that.events.onError.addListener(function (action, status) {
             that.locate("resultsContainer").hide();
-            that.options.messageBar.show(that.options.strings.errorMessage + status, null, true);
+            that.options.messageBar.show(that.lookupMessage("search-errorMessage") + status, null, true);
         });
         
         if (that.options.pivoting) {
@@ -167,10 +167,8 @@ cspace = cspace || {};
         styles: {
             disabled: "cs-search-disabled"
         },
+        parentBundle: "{globalBundle}",
         strings: {
-            errorMessage: "We've encountered an error retrieving search results. Please try again: ",
-            resultsCount: "Found %count records for %query",
-            looking: "Looking for %query...",
             selected: "Select",
             number: "ID Number",
             summary: "Summary",
@@ -204,6 +202,10 @@ cspace = cspace || {};
             applyResults: {
                 funcName: "cspace.search.searchView.applyResults",
                 args: ["{searchView}", "{arguments}.0"]
+            },
+            lookupMessage: {
+                funcName: "cspace.util.lookupMessage",
+                args: ["{searchView}.options.parentBundle.messageBase", "{arguments}.0"]
             }
         },
         components: {
@@ -325,7 +327,7 @@ cspace = cspace || {};
         that.resultsPager.applier.requestChange("totalRange", range);
         that.resultsPager.events.initiatePageChange.fire({pageIndex: pagerModel.pageIndex, forceUpdate: true});
             
-        displayResultsCount(that.dom, range, that.model.searchModel.keywords, that.options.strings);
+        displayResultsCount(that.dom, range, that.model.searchModel.keywords, that);
         if (that.searchResultsResolver) {
             that.searchResultsResolver.resolve(that.model);
         }
@@ -389,7 +391,7 @@ cspace = cspace || {};
         var searchModel = that.model.searchModel;
         that.mainSearch.locate("searchQuery").val(searchModel.keywords);
         that.mainSearch.locate("recordTypeSelect").val(searchModel.recordType);
-        displayLookingMessage(that.dom, searchModel.keywords, that.options.strings);
+        displayLookingMessage(that.dom, searchModel.keywords, that);
         var pagerModel = newPagerModel || that.resultsPager.model;
         that.updateModel({
             pageSize: pagerModel.pageSize,
