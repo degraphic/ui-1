@@ -94,7 +94,7 @@ cspace = cspace || {};
     cspace.relationManager.produceTree = function (that) {
         return {
             addButton: {
-                messagekey: "relationManager-addButton"
+                messagekey: that.options.messagekeys.addButton
             }
         };
     };
@@ -145,6 +145,9 @@ cspace = cspace || {};
         selectorsToIgnore: "searchDialog",
         messageBar: "{messageBar}",
         strings: {
+        },
+        messagekeys: {
+            addButton: "relationManager-addButton"
         },
         events: {
             onCreateNewRecord: null

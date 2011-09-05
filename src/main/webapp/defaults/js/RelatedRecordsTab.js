@@ -108,7 +108,7 @@ cspace = cspace || {};
                 messagekey: "recordList"
             },
             goToRecord: {
-                messagekey: "goToRecord"
+                messagekey: "relatedRecords-goToRecord"
             }
         };
     };
@@ -124,8 +124,8 @@ cspace = cspace || {};
                     related: "{relatedRecordsTab}.related",
                     model: "{relatedRecordsTab}.model",
                     applier: "{relatedRecordsTab}.applier",
-                    strings: {
-                        addButton: "Add record"
+                    messagekeys: {
+                        addButton: "relatedRecords-addButton" //refers to messagekey in bundle
                     }
                 }
             },
@@ -172,7 +172,6 @@ cspace = cspace || {};
         },
         parentBundle: "{globalBundle}",
         strings: {
-            goToRecord: "Go To Record"
         },
         urls: cspace.componentUrlBuilder({
             "goTo": "%webapp/html/%related.html?csid=%csid"
