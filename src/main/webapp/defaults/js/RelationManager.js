@@ -52,7 +52,7 @@ cspace = cspace || {};
                     that.options.messageBar.hide();
                     that.searchToRelateDialog.open();
                 } else {
-                    that.options.messageBar.show(that.options.strings.pleaseSaveFirst, null, true);
+                    that.options.messageBar.show(that.lookupMessage("relationManager-pleaseSaveFirst"), null, true);
                 }
                 return false;
             });
@@ -94,12 +94,7 @@ cspace = cspace || {};
     cspace.relationManager.produceTree = function (that) {
         return {
             addButton: {
-                decorators: {
-                    type: "attrs",
-                    attributes: {
-                        value: that.options.strings.addButton                        
-                    }
-                }
+                messagekey: "relationManager-addButton"
             }
         };
     };
@@ -150,12 +145,17 @@ cspace = cspace || {};
         selectorsToIgnore: "searchDialog",
         messageBar: "{messageBar}",
         strings: {
-            pleaseSaveFirst: "Please save the record you are creating before trying to relate other records to it.",
-            addButton: "Add"
         },
         events: {
             onCreateNewRecord: null
         },
+        invokers: {
+            lookupMessage: {
+                funcName: "cspace.util.lookupMessage",
+                args: ["{relationManager}.options.parentBundle.messageBase", "{arguments}.0"]
+            }
+        },
+        parentBundle: "{globalBundle}",
         mergePolicy: {
             model: "preserve",
             applier: "nomerge"
