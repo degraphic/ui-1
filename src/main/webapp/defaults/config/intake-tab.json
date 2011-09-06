@@ -46,8 +46,8 @@
                                                 "selectors": {
                                                     "identificationNumber": ".csc-intake-entry-number" 
                                                 },
-                                                "strings": {
-                                                    "identificationNumberRequired": "Please specify an Intake Entry Number" 
+                                                "messagekeys": {
+                                                    "identificationNumberRequired": "intake-identificationNumberRequired" 
                                                 } 
                                             } 
                                         }

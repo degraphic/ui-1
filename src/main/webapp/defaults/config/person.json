@@ -22,8 +22,8 @@
                                 }
                             }
                         },
-                        "strings": {
-                            "identificationNumberRequired": "Please specify a Display Name"
+                        "messagekeys": {
+                            "identificationNumberRequired": "person-identificationNumberRequired" 
                         },
                         "applier": "{pageBuilder}.applier",
                         "uispec": "{pageBuilder}.options.uispec.recordEditor",

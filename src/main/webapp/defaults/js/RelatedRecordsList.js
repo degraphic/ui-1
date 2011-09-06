@@ -38,7 +38,7 @@ cspace = cspace || {};
     };
     
     var setupRelatedRecordsList = function (that) {
-        that.locate("numOfRelated").text(fluid.stringTemplate(that.options.strings.numOfRelated, {
+        that.locate("numOfRelated").text(fluid.stringTemplate(that.lookupMessage("relatedRecordsList-numOfRelated"), {
             numOfRelated: that.recordList.calculateRecordListSize()
         }));
     };
@@ -91,6 +91,12 @@ cspace = cspace || {};
             instantiator: "nomerge"
         },
         instantiator: "{instantiator}",
+        invokers: {
+            lookupMessage: {
+                funcName: "cspace.util.lookupMessage",
+                args: ["{relatedRecordsList}.options.parentBundle.messageBase", "{arguments}.0"]
+            }
+        },   
         components: {
             recordList: {
                 type: "cspace.recordList",
@@ -99,10 +105,12 @@ cspace = cspace || {};
                         items: "items"
                     },
                     strings: {
-                        number: "Number",
-                        summary: "Summary",
-                        recordtype: "Type",
-                        nothingYet: "No related records yet"
+                        number: "Number 000",
+                        summary: "Summary 0000",
+                        recordtype: "Type 0000"
+                    },
+                    messagekeys: {
+                        nothingYet: "relatedRecordsList-nothingYet"
                     },
                     showNumberOfItems: false
                 }
@@ -144,7 +152,7 @@ cspace = cspace || {};
         },
         selectorsToIgnore: ["relationManagerSelector", "recordListSelector", "header", "togglable", "numOfRelated"],
         strings: {
-            numOfRelated: "(%numOfRelated)"
+//            numOfRelated: "(%numOfRelated)"
         },
         resources: {
             template: cspace.resourceSpecExpander({

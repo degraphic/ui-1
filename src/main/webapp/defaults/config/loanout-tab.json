@@ -46,8 +46,8 @@
                                                 "selectors": {
                                                     "identificationNumber": ".csc-loanOut-loanOutNumber"
                                                 },
-                                                "strings": {
-                                                    "identificationNumberRequired": "Please specify a Loan Out Number"
+                                                "messagekeys": {
+                                                    "identificationNumberRequired": "loanout-identificationNumberRequired" 
                                                 } 
                                             } 
                                         }

@@ -46,8 +46,8 @@
                                                 "selectors": {
                                                     "identificationNumber": ".csc-loanIn-loanInNumber"
                                                 },
-                                                "strings": {
-                                                    "identificationNumberRequired": "Please specify a Loan In Number"
+                                                "messagekeys": {
+                                                    "identificationNumberRequired": "loanin-identificationNumberRequired" 
                                                 } 
                                             } 
                                         }

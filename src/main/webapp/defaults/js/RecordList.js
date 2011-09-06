@@ -26,7 +26,7 @@ cspace = cspace || {};
             autoBind: true
         },
         invokers: {
-			bindEvents: {
+            bindEvents: {
                 funcName: "cspace.recordList.bindEvents",
                 args: ["{recordList}"]
             },
@@ -67,9 +67,10 @@ cspace = cspace || {};
         },
         repeatingSelectors: ["row", "titleColumn", "column"],
         strings: {
-            nothingYet: "No related records yet",
-            newRow: "New Record",
-            numberOfItems: "%numberOfItems"
+        },
+        messagekeys: {
+            nothingYet: "recordList-nothingYet",
+            newRow: "recordList-newRow"
         },
         styles: {
             hidden: "hidden",
@@ -195,7 +196,7 @@ cspace = cspace || {};
                 }
             },
             newRow: {
-                messagekey: "newRow",
+                messagekey: that.options.messagekeys.newRow,
                 args: {
                     recordType: that.lookupMessage(that.options.recordType)
                 },
@@ -246,7 +247,7 @@ cspace = cspace || {};
                         condition: that.options.showNumberOfItems,
                         trueTree: {
                             numberOfItems: {
-                                messagekey: "numberOfItems",
+                                messagekey: "recordList-numberOfItems",
                                 args: {
                                     numberOfItems: that.calculateRecordListSize()
                                 },
@@ -290,7 +291,7 @@ cspace = cspace || {};
                 },
                 falseTree: {
                     nothingYet: {
-                        messagekey: "nothingYet",
+                        messagekey: that.options.messagekeys.nothingYet,
                         decorators: {
                             type: "addClass",
                             classes: that.options.styles.nothingYet
@@ -357,7 +358,7 @@ cspace = cspace || {};
                     }, {
                         type: "attrs",
                         attributes: {
-                            alt: that.options.strings.deleteRelation
+                            alt: that.lookupMessage("recordList-deleteRelation")
                         }
                     }, {
                         type: "jQuery",

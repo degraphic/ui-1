@@ -12,8 +12,8 @@
                         "selectors": {
                             "identificationNumber": ".csc-loanOut-loanOutNumber"
                         },
-                        "strings": {
-                            "identificationNumberRequired": "Please specify a Loan Out Number"
+                        "messagekeys": {
+                            "identificationNumberRequired": "loanout-identificationNumberRequired" 
                         },
                         "applier": "{pageBuilder}.applier",
                         "uispec": "{pageBuilder}.options.uispec.recordEditor",

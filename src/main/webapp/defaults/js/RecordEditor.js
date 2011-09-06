@@ -25,8 +25,8 @@ cspace = cspace || {};
                     that.options.messageBar.show(message.message, null, data.isError);
                 });
             } else {
-                var msgKey = operation + "FailedMessage";
-                var msg = that.options.strings[msgKey] + message;
+                var msgKey = "recordEditor" + operation + "FailedMessage";
+                var msg = that.lookupMessage(msgKey) + message;
                 that.options.messageBar.show(fluid.stringTemplate(msg, {
                     record: that.lookupMessage(that.options.recordType)
                 }), null, true);
@@ -73,10 +73,10 @@ cspace = cspace || {};
     };
     
     var recordSaveHandler = function (that, data, action) {
-        var message = action.toLowerCase() + "SuccessfulMessage";
+        var message = "recordEditor-" + action.toLowerCase() + "SuccessfulMessage";
         that.options.applier.requestChange("", data);
         that.refreshView();
-        that.options.messageBar.show(fluid.stringTemplate(that.options.strings[message], {
+        that.options.messageBar.show(fluid.stringTemplate(that.lookupMessage(message), {
             record: that.lookupMessage(that.options.recordType)
         }), Date());
         processChanges(that, false);
@@ -85,10 +85,10 @@ cspace = cspace || {};
 
     var bindEventHandlers = function (that) {
         
-        that.events.onSave.addListener(validateIdentificationNumber(that.dom, that.container, that.options.messageBar, that.options.strings.identificationNumberRequired));
+        that.events.onSave.addListener(validateIdentificationNumber(that.dom, that.container, that.options.messageBar, that.lookupMessage(that.options.messagekeys.identificationNumberRequired)));
         
         that.events.onSave.addListener(function () {
-            return validateRequiredFields(that.dom, that.options.messageBar, that.options.strings.missingRequiredFields);
+            return validateRequiredFields(that.dom, that.options.messageBar, that.lookupMessage("recordEditor-missingRequiredFields"));
         });
 
         that.options.dataContext.events.afterCreate.addListener(function (data) {
@@ -100,7 +100,7 @@ cspace = cspace || {};
         });
 
         that.options.dataContext.events.afterRemove.addListener(function () {
-            that.events.afterRemove.fire(fluid.stringTemplate(that.options.strings.removeSuccessfulMessage, {
+            that.events.afterRemove.fire(fluid.stringTemplate(that.lookupMessage("recordEditor-removeSuccessfulMessage"), {
                 record: that.lookupMessage(that.options.recordType)
             }));
         });
@@ -289,7 +289,7 @@ cspace = cspace || {};
                 }
             },
             strings: {
-                primaryMessage: fluid.stringTemplate(that.options.strings.removeSuccessfulMessage, {
+                primaryMessage: fluid.stringTemplate(that.lookupMessage("recordEditor-removeSuccessfulMessage"), {
                     record: that.lookupMessage(that.options.recordType)
                 })
             }
@@ -303,7 +303,7 @@ cspace = cspace || {};
      */
     cspace.recordEditor.statusAfterDelete = function (that) {
         //show messagebar
-        that.options.messageBar.show(fluid.stringTemplate(that.options.strings.removeSuccessfulMessage, {
+        that.options.messageBar.show(fluid.stringTemplate(that.lookupMessage("recordEditor-removeSuccessfulMessage"), {
             record: that.lookupMessage(that.options.recordType)
         }), null, false);
     };
@@ -379,7 +379,7 @@ cspace = cspace || {};
     };
     
     cspace.recordEditor.navigateToFullImage = function (that) {
-        window.open(that.model.fields.blobs[0].imgOrig, "_blank", fluid.stringTemplate(that.options.strings.originalMediaOptions, {
+        window.open(that.model.fields.blobs[0].imgOrig, "_blank", fluid.stringTemplate(that.lookupMessage(that.options.messagekeys.originalMediaOptions), {
             height: that.options.originalMediaDimensions.height,
             width: that.options.originalMediaDimensions.width
         }));
@@ -551,21 +551,25 @@ cspace = cspace || {};
         },
         parentBundle: "{globalBundle}",
         resolver: "{permissionsResolver}",
+        messagekeys: {
+            identificationNumberRequired: "recordEditor-identificationNumberRequired",
+            originalMediaOptions: "recordEditor-originalMediaOptions"
+        },
         strings: {
             specFetchError: "I'm sorry, an error has occurred fetching the UISpec: ",
             errorRecoverySuggestion: "Please try refreshing your browser",
-            updateSuccessfulMessage: "%record successfully saved",
-            createSuccessfulMessage: "New %record successfully created",
-            removeSuccessfulMessage: "%record successfully deleted",
-            updateFailedMessage: "Error saving %record: ",
-            createFailedMessage: "Error creating %record: ",
-            deleteFailedMessage: "Error deleting %record: ",
-            fetchFailedMessage: "Error retriving %record: ",
+//            updateSuccessfulMessage: "%record successfully saved",
+//            createSuccessfulMessage: "New %record successfully created",
+//            removeSuccessfulMessage: "%record successfully deleted",
+//            updateFailedMessage: "Error saving %record: ",
+//            createFailedMessage: "Error creating %record: ",
+//            deleteFailedMessage: "Error deleting %record: ",
+//            fetchFailedMessage: "Error retriving %record: ",
             addRelationsFailedMessage: "Error adding related records: ",
             removeRelationsFailedMessage: "Error removing related records: ",
             defaultTermIndicator: " (default)",
             noDefaultInvitation: "-- Select an item from the list --",
-            missingRequiredFields: "Some required fields are empty",
+//            missingRequiredFields: "Some required fields are empty",
             deletePrimaryMessage: "Delete this %record%relations%media?",
             deleteMessageWithRelated: " and its relationships",
             deleteMessageMediaAttached: " and its attached media"

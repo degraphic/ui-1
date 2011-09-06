@@ -12,8 +12,8 @@
                         "selectors": {
                             "identificationNumber": ".csc-loanIn-loanInNumber"
                         },
-                        "strings": {
-                            "identificationNumberRequired": "Please specify a Loan In Number"
+                        "messagekeys": {
+                            "identificationNumberRequired": "loanin-identificationNumberRequired" 
                         },
                         "applier": "{pageBuilder}.applier",
                         "uispec": "{pageBuilder}.options.uispec.recordEditor",

@@ -12,8 +12,8 @@
                         "selectors": {
                             "identificationNumber": ".csc-group-title"
                         },
-                        "strings": {
-                            "identificationNumberRequired": "Please specify a Title"
+                        "messagekeys": {
+                            "identificationNumberRequired": "group-identificationNumberRequired" 
                         },
                         "applier": "{pageBuilder}.applier",
                         "uispec": "{pageBuilder}.options.uispec.recordEditor",

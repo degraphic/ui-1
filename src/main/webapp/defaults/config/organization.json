@@ -12,8 +12,8 @@
                         "selectors": {
                             "identificationNumber": ".csc-organizationAuthority-displayName" 
                         },
-                        "strings": {
-                            "identificationNumberRequired": "Please specify a Display Name" 
+                        "messagekeys": {
+                            "identificationNumberRequired": "organization-identificationNumberRequired" 
                         },
                         "applier": "{pageBuilder}.applier",
                         "uispec": "{pageBuilder}.options.uispec.recordEditor",

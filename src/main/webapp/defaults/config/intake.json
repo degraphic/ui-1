@@ -12,8 +12,8 @@
                         "selectors": {
                             "identificationNumber": ".csc-intake-entry-number" 
                         },
-                        "strings": {
-                            "identificationNumberRequired": "Please specify an Intake Entry Number" 
+                        "messagekeys": {
+                            "identificationNumberRequired": "intake-identificationNumberRequired" 
                         },
                         "applier": "{pageBuilder}.applier",
                         "uispec": "{pageBuilder}.options.uispec.recordEditor",

@@ -12,8 +12,8 @@
                         "selectors": {
                             "identificationNumber": ".csc-movement-currentLocation" 
                         },
-                        "strings": {
-                            "identificationNumberRequired": "Please specify a Current Location" 
+                        "messagekeys": {
+                            "identificationNumberRequired": "movement-identificationNumberRequired" 
                         },
                         "applier": "{pageBuilder}.applier",
                         "uispec": "{pageBuilder}.options.uispec.recordEditor",

@@ -46,8 +46,8 @@
                                                 "selectors": {
                                                     "identificationNumber": ".csc-objectexit-exitNumber"
                                                 },
-                                                "strings": {
-                                                    "identificationNumberRequired": "Please specify an Exit Number" 
+                                                "messagekeys": {
+                                                    "identificationNumberRequired": "objectexit-identificationNumberRequired" 
                                                 } 
                                             } 
                                         }
