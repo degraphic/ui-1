@@ -43,9 +43,6 @@ cspace = cspace || {};
     
     var makeOpts = function (recordType, options) {
         return {
-            strings: {
-                nothingYet: "No records yet"
-            },
             model: makeArrayExpander(recordType),
             globalNavigator: "{myCollectionSpace}.options.globalNavigator",
             parentBundle: "{myCollectionSpace}.options.parentBundle",

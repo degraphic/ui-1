@@ -19,7 +19,7 @@ cspace = cspace || {};
     fluid.registerNamespace("cspace.sidebar");
     
     var setupSideBar = function (that) {
-        that.locate("numOfTerms").text(fluid.stringTemplate(that.options.strings.numOfTerms, {
+        that.locate("numOfTerms").text(fluid.stringTemplate(that.lookupMessage(that.options.messagekeys.numOfTerms), {
             numOfTerms: that.termsUsed.calculateRecordListSize()
         }));
     }; 
@@ -110,7 +110,7 @@ cspace = cspace || {};
                         }, {
                             type: "attrs",
                             attributes: {
-                                alt: that.options.strings.mediumImage,
+                                alt: that.lookupMessage(that.options.messagekeys.mediumImage),
                                 src: that.options.recordModel.fields && that.options.recordModel.fields.blobs && that.options.recordModel.fields.blobs.length > 0 ? 
                                     that.options.recordModel.fields.blobs[0].imgMedium : ""
                             }
@@ -197,6 +197,10 @@ cspace = cspace || {};
             showMediumImage: {
                 funcName: "cspace.sidebar.showMediumImage",
                 args: "{sidebar}.options.recordModel"
+            },
+            lookupMessage: {
+                funcName: "cspace.util.lookupMessage",
+                args: ["{sidebar}.options.parentBundle.messageBase", "{arguments}.0"]
             }
         },
         model: {
@@ -257,6 +261,10 @@ cspace = cspace || {};
                     dataType: "html"
                 }
             })
+        },
+        messagekeys: {
+            numOfTerms: "sidebar-numOfTerms",
+            mediumImage: "sidebar-mediumImage"
         },
         strings: {
         },

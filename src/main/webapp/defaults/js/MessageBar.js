@@ -50,7 +50,7 @@ cspace = cspace || {};
             message: "${message}",
             time: "${time}",
             cancel: {
-                messagekey: "cancel"
+                messagekey: "messagebar-cancel"
             }
         };
     };
@@ -71,9 +71,6 @@ cspace = cspace || {};
             time: "cs-messageBar-time",
             cancel: "cs-messageBar-cancel",
             error: "cs-message-error"
-        },
-        strings: {
-            cancel: "OK"
         },
         parentBundle: "{globalBundle}",
         produceTree: cspace.messageBarImpl.produceTree,

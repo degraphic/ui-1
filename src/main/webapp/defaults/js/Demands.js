@@ -1412,10 +1412,6 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         fluid.demands("sidebar", "cspace.pageBuilder", {
             container: "{pageBuilder}.options.selectors.sidebar",
             options: {
-                strings: {
-                    mediumImage: "{globalBundle}.messageBase.sidebar-mediumImage",
-                    numOfTerms: "{globalBundle}.messageBase.sidebar-numOfTerms"                                
-                },
                 relationsElPath: "relations",
                 primaryRecordType: "{pageBuilder}.options.pageType",
                 recordApplier: "{pageBuilder}.applier",
