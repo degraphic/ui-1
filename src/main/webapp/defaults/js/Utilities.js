@@ -396,7 +396,7 @@ fluid.registerNamespace("cspace.util");
     };
     
     fluid.defaults("cspace.util.getDefaultSchemaURL", {
-        url: "%chain/%recordType/uischema",
+        url: "%tenant/%tenantname/%recordType/uischema",
         urlRenderer: {
             expander: {
                 type: "fluid.deferredInvokeCall",
@@ -414,7 +414,7 @@ fluid.registerNamespace("cspace.util");
     };
     
     fluid.defaults("cspace.util.getUISpecURL", {
-        url: "%chain/%pageType/uispec",
+        url: "%tenant/%tenantname/%pageType/uispec",
         urlRenderer: {
             expander: {
                 type: "fluid.deferredInvokeCall",
@@ -533,6 +533,75 @@ fluid.registerNamespace("cspace.util");
         messageResolver: "{globalBundle}",
         permission: "read"
     });
+    
+    fluid.defaults("cspace.validator", {
+        gradeNames: ["autoInit", "fluid.littleComponent"],
+        finalInitFunction: "cspace.validator.finalInit",
+        schema: {},
+        recordType: ""
+    });
+    
+    cspace.validator.finalInit = function (that) {
+        var schema = that.options.schema;
+        schema = schema[that.options.recordType].properties;
+        
+        var validatePrimitive = function (value, type) {
+            switch(type) {
+                case "integer":
+                    var parsed = parseInt(value, 10);
+                    if (isNaN(parsed)) {
+                        throw "Invalid Integer";
+                    }
+                    return parsed;
+                    break;
+                case "float":
+                    var parsed = parseFloat(value);
+                    if (isNaN(parsed)) {
+                        throw "Invalid Float";
+                    }
+                    return parsed;
+                    break;
+                default:
+                    return value;
+                    break;
+            }
+        };
+        
+        var validateImpl = function (data, schema) {
+            fluid.each(data, function (value, key) {
+                var subSchema = schema[key];
+                if (!value || !subSchema) {
+                    return;
+                }
+                var type = subSchema.type;
+                if (fluid.isPrimitive(value)) {
+                    data[key] = validatePrimitive(value, type);
+                }
+                else if (typeof value === "object") {
+                    if (type === "array") {
+                        subSchema = subSchema.items ? fluid.transform(value, function () {
+                            return subSchema.items;
+                        }) : [];
+                    }
+                    else if (type === "object") {
+                        subSchema = subSchema.properties;
+                    }
+                    validateImpl(value, subSchema);
+                }
+            });
+        };
+        
+        that.validate = function (data) {
+            var data = fluid.copy(data);
+            try {
+                validateImpl(data, schema);
+            }
+            catch (e) {
+                return;
+            }
+            return data;
+        };
+    };
     
     // This will eventually go away once the getBeanValue strategy is used everywhere.
     cspace.util.getBeanValue = function (root, EL, schema, permManager) {
@@ -683,6 +752,7 @@ fluid.registerNamespace("cspace.util");
         var that = fluid.initView("cspace.util.urnToStringFieldConverter", container, options);
         var func = that.container.val() ? "val" : "text";
         that.container[func](that.options.convert(that.container[func]()));
+        that.container.prop("disabled", true);
         return that;   
     };
     
@@ -732,6 +802,7 @@ fluid.registerNamespace("cspace.util");
             return;
         } 
         selector.text(options.names[index]);
+        selector.prop("disabled", true);
     };
     
     fluid.defaults("cspace.util.nameForValueFinder", {
@@ -769,10 +840,7 @@ fluid.registerNamespace("cspace.util");
                     newspec.expander.push(expander);
                 });
             }
-            else if (typeof val === "string") {
-                newspec[key] = val;
-            }
-            else if (val.messagekey) {
+            else if (typeof val === "string" || val.messagekey || isDecorator(val, "addClass")) {
                 newspec[key] = val;
             }
             else if (val.selection) { 
@@ -1322,8 +1390,21 @@ fluid.registerNamespace("cspace.util");
     };
     cspace.util.localStorageDataSource.preInitFunction = function () {
         if (!cspace.util.isLocalStorage()) {
+            // TODO: Be more graceful.
             fluid.fail("Your browser does not support local storage!");
         }
+    };
+    
+    cspace.util.preInitMergeListeners = function (options, listeners) {
+        options.listeners = options.listeners || {};
+        fluid.each(listeners, function (value, key) {
+            if (!options.listeners[key]) {
+                options.listeners[key] = value;
+            } else {
+                options.listeners[key] = fluid.makeArray(options.listeners[key]);
+                options.listeners[key].push(value);
+            }
+        });
     };
     
 })(jQuery, fluid);

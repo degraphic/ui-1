@@ -90,6 +90,10 @@ cspace = cspace || {};
         that.events.onSave.addListener(function () {
             return validateRequiredFields(that.dom, that.options.messageBar, that.lookupMessage("recordEditor-missingRequiredFields"));
         });
+        
+        that.events.afterRenderRefresh.addListener(function () {
+            clearLocalStorage(that); 
+        });
 
         that.options.dataContext.events.afterCreate.addListener(function (data) {
             recordSaveHandler(that, data, "Create");
@@ -123,7 +127,6 @@ cspace = cspace || {};
         
         that.options.applier.modelChanged.addListener("fields", function (model, oldModel, changeRequest) {
             processChanges(that, true);
-            that.options.messageBar.hide();
         });
 
         that.options.dataContext.events.onError.addListener(makeDCErrorHandler(that));
@@ -166,8 +169,16 @@ cspace = cspace || {};
         if (!that.options.deferRendering) {
             that.refreshView();
         }
-        processChanges(that, false);
+        that.events.afterRenderRefresh.fire(that);
     };
+    
+    var clearLocalStorage = function (that) {
+        var modelToClone = that.localStorage.get(that.localStorage.options.elPath);
+        if (modelToClone) {
+            that.localStorage.set();
+            processChanges(that, true);
+        }
+    };    
     
     var initDeferredComponents = function (that) {
         fluid.each(that.options.deferredComponents, function (component, name) {
@@ -188,10 +199,9 @@ cspace = cspace || {};
         fluid.initDependents(that);
         
         that.checkLocalStorage = function () {
-            var modelToClone = that.localStorage.get(that.localStorage.options.elPath);  
+            var modelToClone = that.localStorage.get();  
             if (modelToClone) {
                 that.applier.requestChange("", modelToClone);
-                that.localStorage.set(undefined);
             }            
         };
 
@@ -230,6 +240,14 @@ cspace = cspace || {};
                     if (that.namespaces.isNamespace(namespace)) {
                         that.options.applier.requestChange("namespace", namespace);
                     }
+                }
+                var validatedModel = that.validator.validate(that.model);
+                if (!validatedModel) {
+                    that.options.messageBar.show(that.lookupMessage("invalidFields"), null, true);
+                    return false;
+                }
+                else {
+                    that.applier.requestChange("", validatedModel)
                 }
                 that.locate("save").prop("disabled", true);
                 if (that.model.csid) {
@@ -388,6 +406,17 @@ cspace = cspace || {};
     cspace.recordEditor.provideProduceTree = function (recordType) {
         return recordType === "media" ? cspace.recordEditor.produceTreeMedia : cspace.recordEditor.produceTree;
     };
+    
+    cspace.recordEditor.produceTreeTemplate = function (that) {
+        var tree = cspace.recordEditor.produceTree(that);
+        tree.templateEditor = {
+            decorators: {
+                type: "fluid",
+                func: "cspace.templateEditor"
+            }
+        };
+        return tree;
+    };
 
     cspace.recordEditor.cutpointGenerator = function (selectors, options) {
         var cutpoints = options.cutpoints || fluid.renderer.selectorsToCutpoints(selectors, options) || [];
@@ -497,6 +526,9 @@ cspace = cspace || {};
                 options: {
                     elPath: "modelToClone"
                 }
+            },
+            validator: {
+                type: "cspace.validator"
             }
         },
         invokers: {
@@ -527,7 +559,8 @@ cspace = cspace || {};
             onSave: "preventable",
             onCancel: null,
             afterRemove: null, // params: textStatus
-            onError: null  // params: operation
+            onError: null, // params: operation
+            afterRenderRefresh: null 
         },
         showDeleteButton: false,
         showCreateFromExistingButton: false,
