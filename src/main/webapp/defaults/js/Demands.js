@@ -350,6 +350,16 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
     
     cspace.includeDemands = function () {
     
+        fluid.demands("cspace.relationManager.add", "cspace.relationManager", {
+            funcName: "cspace.relationManager.add",
+            args: "{relationManager}"
+        });
+        
+        fluid.demands("cspace.relationManager.add", ["cspace.relationManager", "cspace.relatedRecordsTab"], {
+            funcName: "cspace.relationManager.addFromTab",
+            args: "{relationManager}"
+        });
+    
         // Validator
         fluid.demands("cspace.validator", "cspace.recordEditor", {
             options: {  
@@ -1817,7 +1827,7 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                             resolver: "{permissionsResolver}",
                             recordTypeManager: "{recordTypeManager}",
                             permission: "list",
-                            href: "%webapp/html/pages/Administration-%recordType.html",
+                            href: "%webapp/html/%readonlypages/Administration-%recordType.html",
                             callback: "cspace.tabsList.buildAdminModel"
                         }
                     }

@@ -43,6 +43,8 @@ cspace = cspace || {};
                 detailsNoneSelected: "%recordType-admin-detailsNoneSelected"
             }
         },
+        permissionsResolver: "{permissionsResolver}",
+        addButtonPermission: "create",
         strings: {}
     });
     
@@ -68,11 +70,24 @@ cspace = cspace || {};
             detailsNoneSelected: {
                 messagekey: "${strings.detailsNoneSelected}"
             },
-            add: {
-                decorators: {
-                    type: "attrs",
-                    attributes: {
-                        value: that.options.parentBundle.messageBase[that.model.strings.add]
+            expander: {
+                type: "fluid.renderer.condition",
+                condition: {
+                    funcName: "cspace.permissions.resolve",
+                    args: {
+                        permission: that.options.addButtonPermission,
+                        target: that.options.recordType,
+                        resolver: that.options.permissionsResolver
+                    }
+                },
+                trueTree: {
+                    add: {
+                        decorators: {
+                            type: "attrs",
+                            attributes: {
+                                value: that.options.parentBundle.messageBase[that.model.strings.add]
+                            }
+                        }
                     }
                 }
             }

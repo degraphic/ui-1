@@ -210,7 +210,8 @@ cspace = cspace || {};
                         mainSearch: {
                             options: {
                                 related: "{searchToRelateDialog}.options.related",
-                                permission: "update"
+                                permission: "update",
+                                enableAdvancedSearch: false
                             }
                         },
                         resultsPager: {

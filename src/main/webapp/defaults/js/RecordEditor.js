@@ -241,13 +241,15 @@ cspace = cspace || {};
                         that.options.applier.requestChange("namespace", namespace);
                     }
                 }
-                var validatedModel = that.validator.validate(that.model);
-                if (!validatedModel) {
-                    that.options.messageBar.show(that.lookupMessage("invalidFields"), null, true);
-                    return false;
-                }
-                else {
-                    that.applier.requestChange("", validatedModel)
+                if (that.validator) {
+                    var validatedModel = that.validator.validate(that.model);
+                    if (!validatedModel) {
+                        that.options.messageBar.show(that.lookupMessage("invalidFields"), null, true);
+                        return false;
+                    }
+                    else {
+                        that.applier.requestChange("", validatedModel)
+                    }
                 }
                 that.locate("save").prop("disabled", true);
                 if (that.model.csid) {
@@ -359,17 +361,30 @@ cspace = cspace || {};
                 }
             }
         };
-        var tree = fluid.merge(null, {
-            save: {
-                messagekey: "record-primary-saveButton"
+        var saveCancel = {
+            type: "fluid.renderer.condition",
+            condition: {
+                funcName: "cspace.permissions.resolve",
+                args: {
+                    permission: that.options.saveCancelPermission,
+                    target: that.options.recordType,
+                    resolver: that.options.resolver
+                }
             },
-            cancel: {
-                messagekey: "record-primary-cancelButton"
+            trueTree: {
+                save: {
+                    messagekey: "record-primary-saveButton"
+                },
+                cancel: {
+                    messagekey: "record-primary-cancelButton"
+		}
             }
-        }, that.options.uispec);
+        };
+        var tree = fluid.copy(that.options.uispec);
         tree.expander = fluid.makeArray(tree.expander); //make an expander array in case we have expanders in the uispec
         tree.expander.push(deleteButton);
         tree.expander.push(createFromExistingButton);
+        tree.expander.push(saveCancel);
         return tree;
     };
     
@@ -564,6 +579,7 @@ cspace = cspace || {};
         },
         showDeleteButton: false,
         showCreateFromExistingButton: false,
+        saveCancelPermission: "update",
         selectors: {
             save: ".csc-save",
             cancel: ".csc-cancel",
