@@ -20,7 +20,7 @@ cspace = cspace || {};
     cspace.hierarchy.produceTree = function (that) {
         return fluid.merge(null, {
             header: {
-                messagekey: "header"
+                messagekey: "hierarchy-header"
             }
         }, that.options.uispec);
     };
@@ -38,7 +38,6 @@ cspace = cspace || {};
         },
         selectorsToIgnore: ["togglable"],
         strings: {
-            header: "Hierarchy"
         },
         parentBundle: "{globalBundle}",
         produceTree: cspace.hierarchy.produceTree,

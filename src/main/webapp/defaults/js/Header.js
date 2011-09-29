@@ -30,14 +30,15 @@ cspace = cspace || {};
         },
         produceTree: "cspace.header.produceTree",
         selectorsToIgnore: ["searchBox" ],
+        parentBundle: "{globalBundle}",
         model: {
             menuitems: [
             {
-                name: "myCollectionSpace",
+                messagekey: "menuItems-myCollectionSpace",
                 href: "myCollectionSpace.html"
             },
             {
-                name: "createNew",
+                messagekey: "menuItems-createNew",
                 href: "createnew.html",
                 hide: {
                     expander: {
@@ -54,15 +55,15 @@ cspace = cspace || {};
                 }
             },
             {
-                name: "findEdit",
+                messagekey: "menuItems-findEdit",
                 href: "findedit.html"
             },
             {
-                name: "report",
+                messagekey: "menuItems-report",
                 href: "#"
             },
             {
-                name: "administration",
+                messagekey: "menuItems-administration",
                 href: "administration.html",
                 hide: {
                     expander: {
@@ -117,16 +118,6 @@ cspace = cspace || {};
         schema: {},
         login: "{userLogin}",
         strings: {
-            //menu-items
-            myCollectionSpace: "My CollectionSpace",
-            createNew: "Create New",
-            findEdit: "Find and Edit",
-            report: "Report",
-            administration: "Administration",
-            //other
-            logout: "Sign out",
-            user: "Hi,",
-            userName: "%userName"
         },
         postInitFunction: "cspace.header.postInit",
         finalInitFunction: "cspace.header.finalInit"
@@ -170,13 +161,13 @@ cspace = cspace || {};
     cspace.header.produceTree = function (that) {
         var tree = {
             logout: {
-                messagekey: "logout"
+                messagekey: "header-logout"
             },
             user: {
-                messagekey: "user"
+                messagekey: "header-greeting"
             },
             userName: {
-                messagekey: "userName",
+                messagekey: "header-userName",
                 args: {
                     userName: that.options.login.options.screenName
                 } //interpret %userName string
@@ -198,7 +189,7 @@ cspace = cspace || {};
                             label: {
                                 target: "${{item}.href}",
                                 linktext: {
-                                    messagekey: "${{item}.name}"
+                                    messagekey: "${{item}.messagekey}"
                                 }
                             }
                         }
