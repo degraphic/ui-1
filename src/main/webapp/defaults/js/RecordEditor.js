@@ -252,7 +252,6 @@ cspace = cspace || {};
                 if (that.validator) {
                     var validatedModel = that.validator.validate(that.model);
                     if (!validatedModel) {
-                        that.options.messageBar.show(that.lookupMessage("invalidFields"), null, true);
                         return false;
                     }
                     else {
@@ -573,10 +572,7 @@ cspace = cspace || {};
             }
         },
         invokers: {
-            lookupMessage: {
-                funcName: "cspace.util.lookupMessage",
-                args: ["{recordEditor}.options.parentBundle.messageBase", "{arguments}.0"]
-            },
+            lookupMessage: "cspace.util.lookupMessage",
             rollback: {
                 funcName: "cspace.recordEditor.rollback",
                 args: "{recordEditor}"
