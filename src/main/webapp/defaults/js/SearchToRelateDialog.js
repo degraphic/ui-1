@@ -229,8 +229,10 @@ cspace = cspace || {};
                     components: {
                         mainSearch: {
                             options: {
-                                strings: {
-                                    recordTypeSelectLabel: "Search existing:" 
+                                model: {
+                                    messagekeys: {
+                                        recordTypeSelectLabel: "searchToRelateDialog-recordTypeSelectLabel" 
+                                    }
                                 },
                                 related: "{searchToRelateDialog}.options.related",
                                 permission: "update",
