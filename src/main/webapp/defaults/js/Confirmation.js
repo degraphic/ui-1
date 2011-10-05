@@ -19,11 +19,11 @@ cspace = cspace || {};
 
     var addButtonToTree = function (id, strings, styles) {
         return {
+            messagekey: "${messagekeys."+id+"Text}",
             decorators: [{
                 type: "attrs",
                 attributes: {
-                    alt: strings[id + "Alt"],
-                    value: strings[id + "Text"]
+                    alt: "${messagekeys."+id+"Alt}" // strings[id + "Alt"],
                 } 
             }, {
                 type: "addClass",
@@ -83,6 +83,7 @@ cspace = cspace || {};
         events: {
             onClose: null
         },
+        parentBundle: "{globalBundle}",
         strings: {
             cancelText: "Cancel",
             cancelAlt: "cancel",
@@ -158,6 +159,7 @@ cspace = cspace || {};
     };
     
     fluid.defaults("cspace.confirmation", {
+        parentBundle: "{globalBundle}",
         strings: {
             title: "Confirmation."
         }
@@ -169,6 +171,7 @@ cspace = cspace || {};
     };
     
     fluid.defaults("cspace.confirmation.deleteDialog", {
+        parentBundle: "{globalBundle}",
         enableButtons: ["act", "cancel"],
         model: {
             messages: ["primaryMessage"]
@@ -186,17 +189,20 @@ cspace = cspace || {};
     };
     
     fluid.defaults("cspace.confirmation.saveDialog", {
+        parentBundle: "{globalBundle}",
         enableButtons: ["act", "cancel", "proceed"],
         model: {
-            messages: ["primaryMessage", "secondaryMessage"]
+            messages: ["primaryMessage", "secondaryMessage"],
+            messagekeys: {
+                primaryMessage: "saveDialog-primaryMessage",
+                secondaryMessage: "saveDialog-secondaryMessage",
+                actText: "saveDialog-actText",
+                actAlt: "saveDialog-actAlt",
+                proceedText: "saveDialog-proceedText",
+                proceedAlt: "saveDialog-proceedAlt"
+            }
         },
         strings: {
-            primaryMessage: "You are about to leave this record.",
-            secondaryMessage: "Save Changes?",
-            actText: "Save",
-            actAlt: "save and proceed",
-            proceedText: "Don't Save",
-            proceedAlt: "proceed without saving"
         }
     });
 
@@ -206,6 +212,7 @@ cspace = cspace || {};
     };
 
     fluid.defaults("cspace.confirmation.alertDialog", {
+        parentBundle: "{globalBundle}",
         enableButtons: ["act"],
         model: {
             messages: ["primaryMessage", "secondaryMessage"]
