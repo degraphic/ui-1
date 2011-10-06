@@ -364,10 +364,7 @@ cspace = cspace || {};
             message: "cs-reportStatus-message", 
             stop: "cs-reportStatus-stop"
         },
-        strings: {
-            message: "Creating %reportName report...",
-            stop: "Stop" 
-        }
+        strings: { }
     });
     
     fluid.fetchResources.primeCacheFromResources("cspace.reportProducer.reportStatus");
@@ -375,17 +372,13 @@ cspace = cspace || {};
     cspace.reportProducer.reportStatus.produceTree = function (that) {
         return {
             message: {
-                messagekey: "message",
+                messagekey: "reporting-message",
                 args: {reportName: "${reportName}"},
                 decorators: {"addClass": "{styles}.message"}
             },
             stop: {
+                messagekey: "reporting-stop",
                 decorators: [{
-                    type: "attrs",
-                    attributes: {
-                        value: that.options.strings.stop                        
-                    }
-                }, {
                     "addClass": "{styles}.stop"
                 }, {
                     type: "jQuery",
