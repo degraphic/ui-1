@@ -237,6 +237,9 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         fluid.demands("cspace.searchToRelateDialog", ["cspace.relationManager", "cspace.localData"], {
             container: "{relationManager}.dom.searchDialog",
             options: {
+                strings: {
+                    closeAlt: "{globalBundle}.messageBase.searchToRelateDialog-closeAlt"
+                },
                 showCreate: true,
                 listeners: {
                     addRelations: {
@@ -252,7 +255,10 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
 
         fluid.demands("cspace.searchToRelateDialog", ["cspace.relationManager", "cspace.localData", "cspace.sidebar"], {
             container: "{relationManager}.dom.searchDialog",
-            options: {
+            options: {                
+                strings: {
+                    closeAlt: "{globalBundle}.messageBase.searchToRelateDialog-closeAlt"
+                },
                 listeners: {
                     addRelations: {
                         expander: {
@@ -1438,12 +1444,20 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         // Search To Relate Dialog demands
         fluid.demands("cspace.searchToRelateDialog", "cspace.relationManager", {
             container: "{relationManager}.dom.searchDialog",
-            options: {
+            options: {                
+                strings: {
+                    closeAlt: "{globalBundle}.messageBase.searchToRelateDialog-closeAlt"
+                },                
                 showCreate: true
             }
         });
         fluid.demands("cspace.searchToRelateDialog", ["cspace.relationManager", "cspace.sidebar"], {
-            container: "{relationManager}.dom.searchDialog"
+            container: "{relationManager}.dom.searchDialog",
+            options: {              
+                strings: {
+                    closeAlt: "{globalBundle}.messageBase.searchToRelateDialog-closeAlt"
+                }                
+            }
         });
         
         // Repeatable demands
