@@ -608,12 +608,17 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                     broader: response.broader["label"]
                 },
                 strings: {
-                    primaryMessage: that.options.strings.narrowerChange,
-                    actText: "Yes",
-                    actAlt: "yes",
-                    cancelText: "No",
-                    cancelAlt: "no"
-                }
+                    primaryMessage: that.options.strings.narrowerChange
+                },
+                model: {
+                    messagekeys: {
+                        actText: "autocomplete-dialog-actText",
+                        actAlt: "autocomplete-dialog-actAlt",
+                        cancelText: "autocomplete-dialog-cancelText",
+                        cancelAlt: "autocomplete-dialog-cancelAlt"
+                    }
+                },
+                parentBundle: that.options.parentBundle
             });
         });
     };
