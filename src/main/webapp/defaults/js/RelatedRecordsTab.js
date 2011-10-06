@@ -115,9 +115,10 @@ cspace = cspace || {};
                     }
                 }
             },
-            strings: {
-                primaryMessage: recordEditor.options.strings.deletePrimaryMessage
-            }
+            model: {
+                messages: [ "recordEditor-deletePrimaryMessage" ]
+            },
+            parentBundle: that.options.parentBundle
         });
     };
     

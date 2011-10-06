@@ -642,7 +642,7 @@ cspace = cspace || {};
             cancel: "Cancel changes",
             deleteButton: "Delete",
             createFromExistingButton: "Create new from existing",
-            deletePrimaryMessage: "Delete this %record%relations%media?",
+            deletePrimaryMessage: "Delete this %record%relations%media?", //ALREADY MOVED TO BUNDLE BUT NOT IMPL. IN JS CODE
             deleteMessageWithRelated: " and its relationships",
             deleteMessageMediaAttached: " and its attached media"
         },
