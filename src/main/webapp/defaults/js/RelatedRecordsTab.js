@@ -151,8 +151,8 @@ cspace = cspace || {};
                     related: "{relatedRecordsTab}.related",
                     model: "{relatedRecordsTab}.model",
                     applier: "{relatedRecordsTab}.applier",
-                    strings: {
-                        addButton: "Add record"
+                    messagekeys: {
+                        addButton: "relatedRecordsTab-addButton"
                     }
                 }
             },

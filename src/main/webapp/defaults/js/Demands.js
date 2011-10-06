@@ -702,6 +702,14 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
             }
         });
 
+        fluid.demands("confirmation", "cspace.relatedRecordsTab", {
+            options: {
+                strings: {
+                    title: "{globalBundle}.messageBase.confirmationDialog-title"
+                }
+            }
+        });
+        
         fluid.demands("confirmation", "cspace.reportProducer", "{options}");
 
         // CreateNew demands
