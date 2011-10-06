@@ -1814,13 +1814,10 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         fluid.demands("tabsList", ["cspace.tabs", "person"], {
             container: "{tabs}.dom.tabsList",
             options: {
-                strings: {
-                    primary: "{globalBundle}.messageBase.tablist-primary"
-                },
                 model: {
                     tabs: {
                         primary: {
-                            "name": "primary",
+                            "name": "tablist-primary",
                             href: "#primaryTab"
                         }
                     }
@@ -1830,13 +1827,10 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         fluid.demands("tabsList", ["cspace.tabs", "organization"], {
             container: "{tabs}.dom.tabsList",
             options: {
-                strings: {
-                    primary: "{globalBundle}.messageBase.tablist-primary"
-                },
                 model: {
                     tabs: {
                         primary: {
-                            "name": "primary",
+                            "name": "tablist-primary",
                             href: "#primaryTab"
                         }
                     }
@@ -1846,13 +1840,10 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         fluid.demands("tabsList", ["cspace.tabs", "location"], {
             container: "{tabs}.dom.tabsList",
             options: {
-                strings: {
-                    primary: "{globalBundle}.messageBase.tablist-primary"
-                },
                 model: {
                     tabs: {
                         primary: {
-                            "name": "primary",
+                            "name": "tablist-primary",
                             href: "#primaryTab"
                         }
                     }
