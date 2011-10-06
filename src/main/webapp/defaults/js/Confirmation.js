@@ -17,13 +17,13 @@ cspace = cspace || {};
     
     fluid.log("Confirmation.js loaded");
 
-    var addButtonToTree = function (id, strings, styles) {
+    var addButtonToTree = function (id, that, styles) {
         return {
             messagekey: "${messagekeys."+id+"Text}",
             decorators: [{
                 type: "attrs",
                 attributes: {
-                    alt: "${messagekeys."+id+"Alt}" // strings[id + "Alt"],
+                    alt: that.options.parentBundle.resolve(that.options.model.messagekeys[id+"Alt"])
                 } 
             }, {
                 type: "addClass",
@@ -67,13 +67,13 @@ cspace = cspace || {};
                 decorators: {
                     type: "attrs",
                     attributes: {
-                        alt: options.strings.closeAlt                        
+                        alt: that.options.parentBundle.resolve(that.options.model.messagekeys["closeAlt"])
                     }
                 }
             }
         };
         fluid.each(options.enableButtons, function (button) {
-            tree[button] = addButtonToTree(button, options.strings, options.styles);
+            tree[button] = addButtonToTree(button, that, options.styles);
         });
         return tree;
     };
@@ -83,12 +83,14 @@ cspace = cspace || {};
         events: {
             onClose: null
         },
-        parentBundle: "{globalBundle}",
-        strings: {
-            cancelText: "Cancel",
-            cancelAlt: "cancel",
-            closeAlt: "close dialog"
+        model: {
+            messagekeys: {
+                cancelText: "saveDialog-cancelText",
+                cancelAlt: "saveDialog-cancelAlt",
+                closeAlt: "saveDialog-closeAlt"
+            }
         },
+        strings: { },
         selectors: {
             "message:": ".csc-confirmationDialog-text",
             close: ".csc-confirmationDialog-closeBtn",
@@ -159,10 +161,6 @@ cspace = cspace || {};
     };
     
     fluid.defaults("cspace.confirmation", {
-        parentBundle: "{globalBundle}",
-        strings: {
-            title: "Confirmation."
-        }
     });
     
     cspace.confirmation.deleteDialog = function (container, options) {
@@ -174,13 +172,14 @@ cspace = cspace || {};
         parentBundle: "{globalBundle}",
         enableButtons: ["act", "cancel"],
         model: {
-            messages: ["primaryMessage"]
+            messages: ["deleteDialog-primaryMessage"],
+            messagekeys: {
+                primaryMessage: "deleteDialog-primaryMessage",
+                actText: "deleteDialog-actText",
+                actAlt: "deleteDialog-actAlt"
+            }
         },
-        strings: {
-            primaryMessage: "Delete this record?",
-            actText: "Delete",
-            actAlt: "delete record"
-        }
+        strings: { }
     });
     
     cspace.confirmation.saveDialog = function (container, options) {
@@ -189,21 +188,17 @@ cspace = cspace || {};
     };
     
     fluid.defaults("cspace.confirmation.saveDialog", {
-        parentBundle: "{globalBundle}",
         enableButtons: ["act", "cancel", "proceed"],
         model: {
-            messages: ["primaryMessage", "secondaryMessage"],
+            messages: ["saveDialog-primaryMessage", "saveDialog-secondaryMessage"],
             messagekeys: {
-                primaryMessage: "saveDialog-primaryMessage",
-                secondaryMessage: "saveDialog-secondaryMessage",
                 actText: "saveDialog-actText",
                 actAlt: "saveDialog-actAlt",
                 proceedText: "saveDialog-proceedText",
                 proceedAlt: "saveDialog-proceedAlt"
             }
         },
-        strings: {
-        }
+        strings: { }
     });
 
     cspace.confirmation.alertDialog = function (container, options) {
@@ -215,15 +210,13 @@ cspace = cspace || {};
         parentBundle: "{globalBundle}",
         enableButtons: ["act"],
         model: {
-            messages: ["primaryMessage", "secondaryMessage"]
+            messages: ["alertDialog-primaryMessage", "alertDialog-secondaryMessage"],
+            messagekeys: {
+                actText: "alertDialog-actText",
+                actAlt: "alertDialog-actAlt"
+            }
         },
-        strings: {
-            title: "Alert",
-            primaryMessage: "Record Successfully Deleted",
-            secondaryMessage: "Click OK to redirect.",
-            actText: "OK",
-            actAlt: "Accept"
-        }
+        strings: { }
     });
     
 })(jQuery, fluid);

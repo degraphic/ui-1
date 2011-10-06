@@ -147,7 +147,8 @@ cspace = cspace || {};
                                 callback();
                             }
                         }
-                    }
+                    },
+                    parentBundle: that.options.parentBundle
                 });
                 return false;
             }
