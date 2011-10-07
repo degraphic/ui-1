@@ -1026,10 +1026,9 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                             target: "{pageBuilderIO}.options.recordType"
                         }
                     }
-                },
+                },              
                 strings: {
                     deleteButton: "{globalBundle}.messageBase.tab-re-deleteButton",
-                    deletePrimaryMessage: "{globalBundle}.messageBase.tab-re-deletePrimaryMessage",
                     deleteFailedMessage: "{globalBundle}.messageBase.tab-re-deleteFailedMessage",
                     removeSuccessfulMessage: "{globalBundle}.messageBase.tab-re-removeSuccessfulMessage"
                 }

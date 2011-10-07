@@ -169,7 +169,6 @@ cspace = cspace || {};
     };
     
     fluid.defaults("cspace.confirmation.deleteDialog", {
-        parentBundle: "{globalBundle}",
         enableButtons: ["act", "cancel"],
         model: {
             messages: ["deleteDialog-primaryMessage"],
@@ -207,7 +206,6 @@ cspace = cspace || {};
     };
 
     fluid.defaults("cspace.confirmation.alertDialog", {
-        parentBundle: "{globalBundle}",
         enableButtons: ["act"],
         model: {
             messages: ["alertDialog-primaryMessage", "alertDialog-secondaryMessage"],

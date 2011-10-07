@@ -603,14 +603,12 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                         that.eventHolder.events.afterSelectMatch.fire();
                     }
                 },
-                termMap: {
-                    narrower: match["label"],
-                    broader: response.broader["label"]
-                },
-                strings: {
-                    primaryMessage: that.options.strings.narrowerChange
-                },
+                termMap: [
+                    match["label"],
+                    response.broader["label"]
+                ],
                 model: {
+                    messages: [ "autocomplete-dialog-primaryMessage" ],
                     messagekeys: {
                         actText: "autocomplete-dialog-actText",
                         actAlt: "autocomplete-dialog-actAlt",

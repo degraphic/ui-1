@@ -116,7 +116,7 @@ cspace = cspace || {};
                 }
             },
             model: {
-                messages: [ "recordEditor-deletePrimaryMessage" ]
+                messages: [ "tab-re-deletePrimaryMessage" ]
             },
             parentBundle: that.options.parentBundle
         });
