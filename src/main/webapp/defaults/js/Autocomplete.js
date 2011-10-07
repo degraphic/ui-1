@@ -241,14 +241,14 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         if (index === undefined && that.model.authorities.length > 0) {
             tree.addToPanel = {};
             tree.addTermTo = {
-                messagekey: "addTermTo",
-                args: {term: "${term}"}
+                messagekey: "autocomplete-addTermTo",
+                args: [ "${term}" ]
             };
             cspace.autocomplete.makeSelectionTree(tree, "authorityItem", "authorities", "fullName");
         }
         if (that.model.matches.length === 0) {
             tree.noMatches = {
-                messagekey: "noMatches"
+                messagekey: "autocomplete-noMatches"
             };
         }
         else {
@@ -393,7 +393,9 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         },
         components: {
             eventHolder: "{eventHolder}"
-        }
+        },
+        strings: {},
+        parentBundle: "{globalBundle}"
     });
 
     fluid.fetchResources.primeCacheFromResources("cspace.autocomplete.popup");
@@ -476,7 +478,7 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
         setupAutocomplete(that);
         fluid.initDependents(that);
        
-        that.closeButton.button.attr("title", that.options.strings.closeButton);
+        that.closeButton.button.attr("title", that.lookupMessage("autocomplete-closeButton")); 
        
         that.autocomplete.events.onSearch.addListener(
             function (newValue, permitted) {
@@ -667,8 +669,7 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                 options: {
                     model: "{autocomplete}.model",
                     applier: "{autocomplete}.applier",
-                    inputField: "{autocomplete}.autocompleteInput",
-                    strings: "{autocomplete}.options.strings"
+                    inputField: "{autocomplete}.autocompleteInput"
                 }
             },
             authoritiesSource: {
@@ -684,11 +685,8 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                 type: "cspace.autocomplete.closeButton"
             }
         },
-        strings: {
-            noMatches:   "- No matches -",
-            addTermTo:   "Add \"%term\" to:",
-            closeButton: "Cancel edit, and return this field to the most recent authority value"
-        }
+        parentBundle: "{globalBundle}",
+        strings: {}
     });
     
     fluid.defaults("fluid.autocomplete.eventHolder", {
