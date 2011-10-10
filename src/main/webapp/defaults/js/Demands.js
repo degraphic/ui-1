@@ -1082,11 +1082,14 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                     titleColumn: "cs-recordList-title-column-tab",
                     column2: "cs-recordList-column2-tab"
                 },
+//                model: {
+//                    messagekeys: {
+//                        newRow: "tab-list-newRow"
+//                    }
+//                },
                 strings: {
                     number: "{globalBundle}.messageBase.tab-list-number",
-                    summary: "{globalBundle}.messageBase.tab-list-summary",
-                    newRow: "{globalBundle}.messageBase.tab-list-newRow",
-                    deleteRelation: "{globalBundle}.messageBase.tab-list-deleteRelation"
+                    summary: "{globalBundle}.messageBase.tab-list-summary"
                 }
             }
         });
@@ -1121,11 +1124,14 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
                 styles: {
                     deleteRelation: "cs-recordList-deleteRelation"
                 },
+//                model: {
+//                    messagekeys: {
+//                        newRow: "tab-list-newRow"
+//                     }
+//                },
                 strings: {
                     number: "{globalBundle}.messageBase.tab-list-number",
-                    summary: "{globalBundle}.messageBase.tab-list-summary",
-                    newRow: "{globalBundle}.messageBase.tab-list-newRow",
-                    deleteRelation: "{globalBundle}.messageBase.tab-list-deleteRelation"
+                    summary: "{globalBundle}.messageBase.tab-list-summary"
                 }
             }
         });
@@ -1133,10 +1139,14 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
             container: "{listEditor}.dom.list",
             options: {
                 columns: ["screenName", "status"],
+//                model: {
+//                    messagekeys: {
+//                        newRow: "users-admin-newRow"
+//                    }
+//                },
                 strings: {
                     screenName: "{globalBundle}.messageBase.users-admin-screenName",
-                    status: "{globalBundle}.messageBase.users-admin-status",
-                    newRow: "{globalBundle}.messageBase.users-admin-newRow"
+                    status: "{globalBundle}.messageBase.users-admin-status"
                 }
             }
         });
@@ -1145,9 +1155,13 @@ https://source.collectionspace.org/collection-space/LICENSE.txt
             options: {
                 recordType: "{listEditor}.options.recordType",
                 columns: ["number"],
+//                model: {
+//                    messagekeys: {
+//                        newRow: "admin-newRow"                        
+//                    }
+//                },
                 strings: {
-                    number: "{globalBundle}.messageBase.admin-number",
-                    newRow: "{globalBundle}.messageBase.admin-newRow"
+                    number: "{globalBundle}.messageBase.admin-number"
                 }
             }
         });

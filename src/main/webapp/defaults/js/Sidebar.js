@@ -230,7 +230,10 @@ cspace = cspace || {};
                 createOnEvent: "afterRender",
                 options: {
                     model: {
-                        items: "{sidebar}.options.recordModel.termsUsed"
+                        items: "{sidebar}.options.recordModel.termsUsed",
+                        messagekeys: {
+                            nothingYet: "sidebar-nothingYet"
+                        }
                     },
                     elPaths: {
                         items: "items"
@@ -239,8 +242,7 @@ cspace = cspace || {};
                     strings: {
                         number: "Term",
                         sourceFieldName: "Field",
-                        recordtype: "Vocabulary",
-                        nothingYet: "No Authority terms used yet"
+                        recordtype: "Vocabulary"
                     },
                     showNumberOfItems: false
                 }
